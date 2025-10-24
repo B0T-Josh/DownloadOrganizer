@@ -35,7 +35,6 @@ def findDownloads() -> str:
             else: break
             if c == "\\": counter += 1
         
-        print(final_path + "\\Downloads")
         return final_path + "\\Downloads"
     except:
         None
