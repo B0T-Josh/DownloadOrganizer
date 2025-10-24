@@ -81,8 +81,8 @@ def filter() -> int:
         if len(files) < 1: return 0
         for file in files:
             try:
-                index: int = file.index(".")
-                ext: str = file[index:]
+                index: int = file[::-1].index(".")
+                ext: str = file[index*-1-1:]
                 category: str = getFileCategory(ext)
                 if moveFile(file, category):
                     continue
