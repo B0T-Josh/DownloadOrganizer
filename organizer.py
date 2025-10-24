@@ -35,13 +35,14 @@ def findDownloads() -> str:
             else: break
             if c == "\\": counter += 1
         
-        return final_path + "\\Downloads"
+        return final_path.replace("\n", "") + "\\Downloads"
     except:
         None
 
 #Function to read download directory files
 def contents() -> list[str]:
     try:
+        print(f"{findDownloads()}")
         o.chdir(findDownloads())
     except:
         print("Change directory unsuccessful")
