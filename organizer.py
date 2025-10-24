@@ -42,7 +42,6 @@ def findDownloads() -> str:
 #Function to read download directory files
 def contents() -> list[str]:
     try:
-        print(f"{findDownloads()}")
         o.chdir(findDownloads())
     except:
         print("Change directory unsuccessful")
