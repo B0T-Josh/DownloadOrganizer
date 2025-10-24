@@ -1,1 +1,4 @@
 *.c
+*.py
+/env
+*.spec
