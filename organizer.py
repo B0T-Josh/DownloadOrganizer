@@ -24,13 +24,28 @@ CATEGORIES = {
     "Data": [".pkl", ".npy", ".npz", ".h5", ".parquet", ".sav", ".mat"]
 }
 
+def findDownloads() -> str:
+    try:
+        path: str = s.run("cd", shell=True, capture_output=True, text=True).stdout
+        final_path: str = ""
+        counter: int = 0
+        for c in path:
+            if counter < 3:
+                final_path += c
+            else: break
+            if c == "\\": counter += 1
+        
+        return final_path + "\\Downloads"
+    except:
+        None
 
 #Function to read download directory files
 def contents() -> list[str]:
     try:
-        o.chdir("Downloads")
+        o.chdir(findDownloads())
     except:
         print("Change directory unsuccessful")
+        return []
         
     contents: list[str] = s.run("dir /b", shell=True, capture_output=True, text=True).stdout.replace(" ", "|").split()
     return contents
@@ -63,6 +78,7 @@ def getFileCategory(ext: str) -> str:
 def filter() -> int:
     try:
         files: list[str] = contents()
+        if len(files) < 1: return 0
         for file in files:
             try:
                 index: int = file.index(".")
